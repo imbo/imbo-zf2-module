@@ -10,20 +10,17 @@
 
 namespace Imbo;
 
-use ImboClient\Client,
-    Zend\ModuleManager\Feature\ConfigProviderInterface,
-    Zend\ModuleManager\Feature\ServiceProviderInterface;
-
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
 /**
- * Imbo ZF2 module
+ * Imbo module
  *
  * @author Christer Edvartsen <cogo@starzinger.net>
  * @package Imbo module
  */
 class Module implements ConfigProviderInterface {
     /**
-     * Load default module config
+     * {@inheritdoc}
      */
     public function getConfig() {
         return include __DIR__ . '/../../config/module.config.php';
