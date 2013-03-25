@@ -21,21 +21,24 @@ return array(
         ),
     ),
 
-    // Configuration for the client
-    'imboClient' => array(
-        // Single host name or an array of host names
-        'host' => '',
+    // Configuration for the module
+    'imboModule' => array(
+        // Configuration for the client
+        'imboClient' => array(
+            // Single host name or an array of host names
+            'host' => '',
 
-        // Public key used with the Imbo server
-        'publicKey' => '',
+            // Public key used with the Imbo server
+            'publicKey' => '',
 
-        // Private key used with the Imbo server
-        'privateKey' => '',
+            // Private key used with the Imbo server
+            'privateKey' => '',
 
-        // Driver specific parameters
-        'driver' => array(
-            'timeout' => 2,
-            'connectTimeout' => 2,
+            // Driver specific parameters
+            'driver' => array(
+                'timeout' => 2,
+                'connectTimeout' => 2,
+            ),
         ),
     ),
 );

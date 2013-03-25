@@ -26,7 +26,7 @@ class ImboClientServiceFactory implements FactoryInterface {
      * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator) {
-        $config = $serviceLocator->get('config')['imboClient'];
+        $config = $serviceLocator->get('config')['imboModule']['imboClient'];
 
         // Return a new instance of the client with all available configuration options
         return new Client(

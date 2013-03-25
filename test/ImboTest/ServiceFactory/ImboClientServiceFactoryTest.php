@@ -25,13 +25,15 @@ class ImboClientServiceFactoryTest extends \PHPUnit_Framework_TestCase {
      */
     public function testCorrectlyConfiguresTheClient() {
         $config = array(
-            'imboClient' => array(
-                'host' => 'http://imbo',
-                'publicKey' => 'public',
-                'privateKey' => 'private',
-                'driver' => array(
-                    'timeout' => 13,
-                    'connectTimeout' => 49,
+            'imboModule' => array(
+                'imboClient' => array(
+                    'host' => 'http://imbo',
+                    'publicKey' => 'public',
+                    'privateKey' => 'private',
+                    'driver' => array(
+                        'timeout' => 13,
+                        'connectTimeout' => 49,
+                    ),
                 ),
             ),
         );
