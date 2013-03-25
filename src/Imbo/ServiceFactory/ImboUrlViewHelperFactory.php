@@ -25,7 +25,12 @@ class ImboUrlViewHelperFactory implements FactoryInterface {
      * {@inheritdoc}
      */
     public function createService(ServiceLocatorInterface $serviceLocator) {
-        // Return a view helper with the client injected
-        return new ImboUrl($serviceLocator->getServiceLocator()->get('ImboClient'));
+        // Fetch the main service manager
+        $serviceManager = $serviceLocator->getServiceLocator();
+
+        return new ImboUrl(
+            $serviceManager->get('ImboClient'),
+            $serviceManager->get('config')['imboModule']['viewHelperPresets']
+        );
     }
 }

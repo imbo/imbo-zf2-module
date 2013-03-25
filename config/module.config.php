@@ -40,5 +40,8 @@ return array(
                 'connectTimeout' => 2,
             ),
         ),
+
+        // Transformation presets
+        'viewHelperPresets' => array(),
     ),
 );

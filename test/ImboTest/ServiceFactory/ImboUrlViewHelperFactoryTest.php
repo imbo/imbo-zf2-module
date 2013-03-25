@@ -23,13 +23,24 @@ class ImboUrlViewHelperFactoryTest extends \PHPUnit_Framework_TestCase {
      * @covers Imbo\ServiceFactory\ImboUrlViewHelperFactory::createService
      */
     public function testCorrectlyConfiguresTheViewHelper() {
+        $config = array(
+            'imboModule' => array(
+                'viewHelperPresets' => array(),
+            ),
+        );
+
         $imboClient = $this->getMock('ImboClient\ClientInterface');
 
         $serviceManager = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
-        $serviceManager->expects($this->once())
+        $serviceManager->expects($this->at(0))
                        ->method('get')
                        ->with('ImboClient')
                        ->will($this->returnValue($imboClient));
+
+        $serviceManager->expects($this->at(1))
+                       ->method('get')
+                       ->with('config')
+                       ->will($this->returnValue($config));
 
         $helperPluginManager = $this->getMockBuilder('Zend\View\HelperPluginManager')
                                     ->disableOriginalConstructor()

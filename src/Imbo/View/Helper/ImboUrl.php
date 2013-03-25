@@ -29,31 +29,47 @@ class ImboUrl extends AbstractHelper {
     private $client;
 
     /**
+     * Configuration used for transformation presets
+     *
+     * @var array
+     */
+    private $config;
+
+    /**
      * Class constructor
      *
      * @param ClientInterface $client The imbo client
      */
-    public function __construct(ClientInterface $client) {
+    public function __construct(ClientInterface $client, array $config = array()) {
         $this->client = $client;
+        $this->config = $config;
     }
 
     /**
      * Get the image url
      *
      * @param string $imageIdentifier The image identifier
+     * @param string $preset Transformation preset from the configuration
      * @return ImageUrl
      */
-    public function imboUrl($imageIdentifier) {
-        return $this->client->getImageUrl($imageIdentifier);
+    public function imboUrl($imageIdentifier, $preset = null) {
+        $url = $this->client->getImageUrl($imageIdentifier);
+
+        if (isset($this->config[$preset])) {
+            return $this->config[$preset]($url);
+        }
+
+        return $url;
     }
 
     /**
-     * Invoke the view helper directly
+     * Invoke the view helper directly (proxies to imboUrl())
      *
      * @param string $imageIdentifier The image identifier
+     * @param string $preset Transformation preset from the configuration
      * @return ImageUrl
      */
-    public function __invoke($imageIdentifier) {
-        return $this->imboUrl($imageIdentifier);
+    public function __invoke($imageIdentifier, $preset = null) {
+        return $this->imboUrl($imageIdentifier, $preset);
     }
 }
