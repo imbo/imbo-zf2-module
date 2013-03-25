@@ -2,6 +2,8 @@ Imbo module for Zend Framework 2
 ================================
 This module introduces an [Imbo client](https://github.com/imbo/imboclient-php) service, and a view helper for creating Imbo image URLs.
 
+[![Build Status](https://travis-ci.org/imbo/imbo-zf2-module.png?branch=develop)](https://travis-ci.org/imbo/imbo-zf2-module)
+
 Installation
 ------------
 Add `imbo/imbo-zf2-module` to your `composer.json` file, and enable the module in your `application.config.php` file:
