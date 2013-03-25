@@ -40,9 +40,20 @@ class ImboUrl extends AbstractHelper {
     /**
      * Get the image url
      *
+     * @param string $imageIdentifier The image identifier
      * @return ImageUrl
      */
     public function imboUrl($imageIdentifier) {
         return $this->client->getImageUrl($imageIdentifier);
+    }
+
+    /**
+     * Invoke the view helper directly
+     *
+     * @param string $imageIdentifier The image identifier
+     * @return ImageUrl
+     */
+    public function __invoke($imageIdentifier) {
+        return $this->imboUrl($imageIdentifier);
     }
 }

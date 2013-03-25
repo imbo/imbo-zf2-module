@@ -21,15 +21,17 @@ use Imbo\View\Helper\ImboUrl;
 class ImboUrlTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Imbo\View\Helper\ImboUrl::__construct
+     * @covers Imbo\View\Helper\ImboUrl::__invoke
      * @covers Imbo\View\Helper\ImboUrl::imboUrl
      */
     public function testCanReturnAnImageUrl() {
         $identifier = 'd1f4a3e84c79e58fdc654981b0e3a374';
         $imageUrl = $this->getMockBuilder('ImboClient\Url\Image')->disableOriginalConstructor()->getMock();
         $client = $this->getMock('ImboClient\ClientInterface');
-        $client->expects($this->once())->method('getImageUrl')->with($identifier)->will($this->returnValue($imageUrl));
+        $client->expects($this->exactly(2))->method('getImageUrl')->with($identifier)->will($this->returnValue($imageUrl));
 
         $helper = new ImboUrl($client);
         $this->assertSame($imageUrl, $helper->imboUrl($identifier));
+        $this->assertSame($imageUrl, $helper($identifier));
     }
 }
