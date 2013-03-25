@@ -1,0 +1,29 @@
+{
+  "name": "imbo/imbo-zf2",
+  "type": "library",
+  "description": "Imbo module for Zend Framework 2",
+  "keywords": [ "image storage", "image transformation", "image metadata", "zend framework 2", "zf2" ],
+  "homepage": "http://www.imbo-project.org/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christer Edvartsen",
+      "email": "cogo@starzinger.net",
+      "role": "Project lead",
+      "homepage": "http://cogo.wordpress.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "imbo/imboclient": "0.8.*",
+    "zendframework/zend-modulemanager": "2.*",
+    "zendframework/zend-servicemanager": "2.*",
+    "zendframework/zend-view": "2.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Imbo\\": "src/",
+      "ImboTest\\": "test/"
+    }
+  }
+}
