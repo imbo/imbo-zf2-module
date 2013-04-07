@@ -23,7 +23,6 @@ class ImboUrlTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Imbo\View\Helper\ImboUrl::__construct
      * @covers Imbo\View\Helper\ImboUrl::__invoke
-     * @covers Imbo\View\Helper\ImboUrl::imboUrl
      */
     public function testCanReturnAnImageUrl() {
         $identifier = 'd1f4a3e84c79e58fdc654981b0e3a374';
@@ -38,7 +37,6 @@ class ImboUrlTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Imbo\View\Helper\ImboUrl::__construct
      * @covers Imbo\View\Helper\ImboUrl::__invoke
-     * @covers Imbo\View\Helper\ImboUrl::imboUrl
      */
     public function testSupportsConfiurablePresets() {
         $config = array(
