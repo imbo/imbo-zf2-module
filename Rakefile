@@ -4,11 +4,11 @@ require 'fileutils'
 
 basedir  = "."
 build    = "#{basedir}/build"
-source   = "#{basedir}/library"
+source   = "#{basedir}/src"
 tests    = "#{basedir}/tests"
 
 desc "Default task"
-task :default => [:prepare, :lint, :installdep, :test]
+task :default => [:prepare, :lint, :installdep, :apidocs, :test]
 
 desc "Run tests"
 task :test => [:phpunit]
@@ -18,7 +18,7 @@ task :prepare do
   FileUtils.rm_rf build
   FileUtils.mkdir build
 
-  ["coverage"].each do |d|
+  ["docs", "coverage"].each do |d|
     FileUtils.mkdir "#{build}/#{d}"
   end
 end
@@ -59,10 +59,15 @@ task :install_composer do
   end
 end
 
+desc "Generate API documentation"
+task :apidocs do
+  system "phpdoc -d #{source} -t #{build}/docs --title \"Imbo ZF2 module API docs\""
+end
+
 desc "Run PHPUnit tests"
 task :phpunit do
   begin
-    sh %{vendor/bin/phpunit --verbose --coverage-html build/coverage --coverage-clover build/logs/clover.xml --log-junit build/logs/junit.xml -c test}
+    sh %{vendor/bin/phpunit --verbose --coverage-html build/coverage --coverage-clover build/logs/clover.xml --log-junit build/logs/junit.xml -c #{tests}}
   rescue Exception
     exit 1
   end
