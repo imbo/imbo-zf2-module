@@ -21,6 +21,12 @@ return array(
         ),
     ),
 
+    'controllers' => array(
+        'initializers' => array(
+            'ImboClient' => 'Imbo\Initializer\ImboClientInitializer',
+        ),
+    ),
+
     // Configuration for the module
     'imboModule' => array(
         // Configuration for the client
