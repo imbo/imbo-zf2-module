@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "dadbc22b0b719c778a2a364a3870e65f",
+    "hash": "513a3e4067a63a0d59b474ea8bf05f9f",
     "packages": [
         {
             "name": "imbo/imboclient",
