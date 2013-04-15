@@ -64,6 +64,32 @@ return array(
 See below on how to trigger these presets in your view scripts.
 
 ## Usage
+### Injection via the initializer
+The module ships with a controller initializer that looks for controllers that implement the ``Imbo\Service\ImboClientAwareInterface`` interface. Whenever such a controller is found, the ``setImboClient()`` method will be called with an instance of ``ImboClient\ClientInterface``, fetched from the service manager. The interface also defines a ``getImboClient()`` method that whould return the client instance.
+
+The module also includes a trait that implements both these methods, so if you have a controller that needs access to an Imbo client, you will only need to add a couple of lines:
+
+```php
+<?php
+namespace Application\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController,
+    Imbo\Service\ImboClientAwareInterface,
+    Imbo\Service\ImboClientAware;
+
+class IndexController extends AbstractActionController implements ImboClientAwareInterface {
+    use ImboClientAware;
+
+    public function indexAction() {
+        $client = $this->getImboClient();
+
+        // ...
+    }
+}
+```
+
+All you need to do is have your controller implement the interface and ``use`` the [trait](http://php.net/traits) (requires PHP-5.4), and Zend Framework will automatically inject the Imbo client for you.
+
 ### Client service
 The service is simply called `ImboClient` and can be fetched from the main service manager. The following code is how the view helper fetches the client:
 

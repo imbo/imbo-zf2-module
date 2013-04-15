@@ -1,6 +1,12 @@
 Changelog for Imbo ZF2 Module
 =============================
 
+1.1.0
+-----
+__N/A__
+
+* Added a controller initializer with an interface and a trait that controllers can implement/use to get an instance of the Imbo client automatically injected.
+
 1.0.2
 -----
 __2013-04-07__
