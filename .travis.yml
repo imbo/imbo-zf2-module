@@ -10,6 +10,7 @@ notifications:
 
 before_script:
   - composer self-update
-  - composer --dev install --prefer-source
+  - composer -n --dev install --prefer-source
 
-script: phpunit -c tests
+script:
+  - ./vendor/bin/phpunit -c tests
