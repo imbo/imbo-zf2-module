@@ -10,7 +10,7 @@
 
 namespace Imbo\Service;
 
-use ImboClient\ClientInterface;
+use ImboClient\ImboClient;
 
 /**
  * Interface that controllers who want an instance of ImboClient injected can implement
@@ -24,14 +24,14 @@ interface ImboClientAwareInterface {
     /**
      * Set an instance of an Imbo client
      *
-     * @param ClientInterface $client
+     * @param ImboClient $client
      */
-    function setImboClient(ClientInterface $client);
+    function setImboClient(ImboClient $client);
 
     /**
      * Fetch the Imbo client
      *
-     * @return ClientInterface
+     * @return ImboClient
      */
     function getImboClient();
 }

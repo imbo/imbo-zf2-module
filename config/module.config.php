@@ -39,12 +39,6 @@ return array(
 
             // Private key used with the Imbo server
             'privateKey' => '',
-
-            // Driver specific parameters
-            'driver' => array(
-                'timeout' => 2,
-                'connectTimeout' => 2,
-            ),
         ),
 
         // Transformation presets

@@ -10,8 +10,7 @@
 
 namespace Imbo\ServiceFactory;
 
-use ImboClient\Client,
-    ImboClient\Driver\cURL,
+use ImboClient\ImboClient,
     Zend\ServiceManager\FactoryInterface,
     Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -29,11 +28,10 @@ class ImboClientServiceFactory implements FactoryInterface {
         $config = $serviceLocator->get('config')['imboModule']['imboClient'];
 
         // Return a new instance of the client with all available configuration options
-        return new Client(
-            $config['host'],
-            $config['publicKey'],
-            $config['privateKey'],
-            new cURL($config['driver'])
-        );
+        return ImboClient::factory(array(
+            'serverUrls' => (array) $config['host'],
+            'publicKey' => $config['publicKey'],
+            'privateKey' => $config['privateKey'],
+        ));
     }
 }

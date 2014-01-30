@@ -42,7 +42,7 @@ class ImboClientInitializerTest extends \PHPUnit_Framework_TestCase {
      * @covers Imbo\Initializer\ImboClientInitializer::initialize
      */
     public function testInjectsTheModuleToCorrectInstances() {
-        $imboClient = $this->getMock('ImboClient\ClientInterface');
+        $imboClient = $this->getMockBuilder('ImboClient\ImboClient')->disableOriginalConstructor()->getMock();
 
         $sm = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $sm->expects($this->once())->method('get')->with('ImboClient')->will($this->returnValue($imboClient));

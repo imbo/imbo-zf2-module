@@ -46,7 +46,7 @@ class ImboClientServiceFactoryTest extends \PHPUnit_Framework_TestCase {
         $factory = new ImboClientServiceFactory();
         $client = $factory->createService($serviceLocator);
 
-        $this->assertInstanceOf('ImboClient\Client', $client);
+        $this->assertInstanceOf('ImboClient\ImboClient', $client);
 
         // Assert correct configuration has been injected
         $this->assertSame(array('http://imbo'), $client->getServerUrls());
@@ -55,22 +55,7 @@ class ImboClientServiceFactoryTest extends \PHPUnit_Framework_TestCase {
             (string) $client->getUserUrl()
         );
 
-        // Enable super ghetto mode
-
-        $privateKey = new ReflectionProperty('ImboClient\Client', 'privateKey');
-        $privateKey->setAccessible(true);
-
-        $this->assertSame('private', $privateKey->getValue($client));
-
-        $driver = new ReflectionProperty('ImboClient\Client', 'driver');
-        $driver->setAccessible(true);
-
-        $curl = $driver->getValue($client);
-
-        $curlParams = new ReflectionProperty('ImboClient\Driver\cURL', 'params');
-        $curlParams->setAccessible(true);
-
-        $this->assertSame(13, $curlParams->getValue($curl)['timeout']);
-        $this->assertSame(49, $curlParams->getValue($curl)['connectTimeout']);
+        $this->assertSame('public', $client->getPublicKey());
+        $this->assertSame('private', $client->getConfig('privateKey'));
     }
 }

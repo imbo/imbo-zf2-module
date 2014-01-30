@@ -29,7 +29,7 @@ class ImboUrlViewHelperFactoryTest extends \PHPUnit_Framework_TestCase {
             ),
         );
 
-        $imboClient = $this->getMock('ImboClient\ClientInterface');
+        $imboClient = $this->getMockBuilder('ImboClient\ImboClient')->disableOriginalConstructor()->getMock();
 
         $serviceManager = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
         $serviceManager->expects($this->at(0))

@@ -50,7 +50,7 @@ class ImboClientAwareTest extends \PHPUnit_Framework_TestCase {
      * @covers Imbo\Service\ImboClientAware::setImboClient
      */
     public function testCanSetAnInstanceOfAClient() {
-        $client = $this->getMock('ImboClient\ClientInterface');
+        $client = $this->getMockBuilder('ImboClient\ImboClient')->disableOriginalConstructor()->getMock();
         $this->traitObject->setImboClient($client);
         $this->assertSame($client, $this->traitObject->getImboClient());
     }

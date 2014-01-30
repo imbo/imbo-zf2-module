@@ -10,7 +10,7 @@
 
 namespace Imbo\Service;
 
-use ImboClient\ClientInterface;
+use ImboClient\ImboClient;
 
 /**
  * Trait for controllers to use when implementing the ImboClientAwareInterface interface
@@ -20,14 +20,14 @@ use ImboClient\ClientInterface;
  */
 trait ImboClientAware {
     /**
-     * @var ClientInterface
+     * @var ImboClient
      */
     private $imboClient;
 
     /**
      * @see ImboClientAwareInterface::setImboClient()
      */
-    public function setImboClient(ClientInterface $client) {
+    public function setImboClient(ImboClient $client) {
         $this->imboClient = $client;
     }
 

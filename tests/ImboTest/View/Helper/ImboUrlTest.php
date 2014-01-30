@@ -11,7 +11,7 @@
 namespace ImboTest\View\Helper;
 
 use Imbo\View\Helper\ImboUrl,
-    ImboClient\Url\Image as ImageUrl;
+    ImboClient\Http\ImageUrl;
 
 /**
  * ImboUrl view helper test
@@ -26,8 +26,8 @@ class ImboUrlTest extends \PHPUnit_Framework_TestCase {
      */
     public function testCanReturnAnImageUrl() {
         $identifier = 'd1f4a3e84c79e58fdc654981b0e3a374';
-        $imageUrl = $this->getMockBuilder('ImboClient\Url\Image')->disableOriginalConstructor()->getMock();
-        $client = $this->getMock('ImboClient\ClientInterface');
+        $imageUrl = $this->getMockBuilder('ImboClient\Http\ImageUrl')->disableOriginalConstructor()->getMock();
+        $client = $this->getMockBuilder('ImboClient\ImboClient')->disableOriginalConstructor()->getMock();
         $client->expects($this->once())->method('getImageUrl')->with($identifier)->will($this->returnValue($imageUrl));
 
         $helper = new ImboUrl($client);
@@ -46,11 +46,11 @@ class ImboUrlTest extends \PHPUnit_Framework_TestCase {
             },
         );
         $identifier = 'd1f4a3e84c79e58fdc654981b0e3a374';
-        $imageUrl = $this->getMockBuilder('ImboClient\Url\Image')->disableOriginalConstructor()->getMock();
+        $imageUrl = $this->getMockBuilder('ImboClient\Http\ImageUrl')->disableOriginalConstructor()->getMock();
         $imageUrl->expects($this->once())->method('thumbnail')->will($this->returnSelf());
         $imageUrl->expects($this->once())->method('desaturate')->will($this->returnSelf());
 
-        $client = $this->getMock('ImboClient\ClientInterface');
+        $client = $this->getMockBuilder('ImboClient\ImboClient')->disableOriginalConstructor()->getMock();
         $client->expects($this->once())->method('getImageUrl')->with($identifier)->will($this->returnValue($imageUrl));
         $helper = new ImboUrl($client, $config);
         $url = $helper($identifier, 'graythumb');

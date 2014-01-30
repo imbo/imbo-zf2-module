@@ -10,8 +10,8 @@
 
 namespace Imbo\View\Helper;
 
-use ImboClient\ClientInterface,
-    ImboClient\Url\Image as ImageUrl,
+use ImboClient\ImboClient,
+    ImboClient\Http\ImageUrl,
     Zend\View\Helper\AbstractHelper;
 
 /**
@@ -24,7 +24,7 @@ class ImboUrl extends AbstractHelper {
     /**
      * The Imbo client
      *
-     * @var ClientInterface
+     * @var ImboClient
      */
     private $client;
 
@@ -38,10 +38,10 @@ class ImboUrl extends AbstractHelper {
     /**
      * Class constructor
      *
-     * @param ClientInterface $client The imbo client
+     * @param ImboClient $client The imbo client
      * @param array $config Transformation presets from the module configuration
      */
-    public function __construct(ClientInterface $client, array $config = null) {
+    public function __construct(ImboClient $client, array $config = null) {
         $this->client = $client;
 
         if ($config !== null) {
