@@ -27,9 +27,13 @@ class ImboClientServiceFactory implements FactoryInterface {
     public function createService(ServiceLocatorInterface $serviceLocator) {
         $config = $serviceLocator->get('config')['imboModule']['imboClient'];
 
+        // Fall back to public key if no user is specified
+        $user = !empty($config['user']) ? $config['user'] : $config['publicKey'];
+
         // Return a new instance of the client with all available configuration options
         return ImboClient::factory(array(
             'serverUrls' => (array) $config['host'],
+            'user' => $user,
             'publicKey' => $config['publicKey'],
             'privateKey' => $config['privateKey'],
         ));

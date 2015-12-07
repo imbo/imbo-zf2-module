@@ -1,6 +1,12 @@
 Changelog for Imbo ZF2 Module
 =============================
 
+3.0.0
+-----
+__2015-12-07__
+
+* This module now uses ImboClient 2.x
+
 2.0.0
 -----
 __2014-01-30__

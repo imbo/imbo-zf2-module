@@ -34,6 +34,9 @@ return array(
             // Single host name or an array of host names
             'host' => '',
 
+            // User used with the Imbo server
+            'user' => '',
+
             // Public key used with the Imbo server
             'publicKey' => '',
 

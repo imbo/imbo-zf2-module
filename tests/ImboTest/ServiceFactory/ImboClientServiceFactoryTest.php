@@ -28,6 +28,47 @@ class ImboClientServiceFactoryTest extends \PHPUnit_Framework_TestCase {
             'imboModule' => array(
                 'imboClient' => array(
                     'host' => 'http://imbo',
+                    'user' => 'usr',
+                    'publicKey' => 'public',
+                    'privateKey' => 'private',
+                    'driver' => array(
+                        'timeout' => 13,
+                        'connectTimeout' => 49,
+                    ),
+                ),
+            ),
+        );
+
+        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $serviceLocator->expects($this->once())
+                       ->method('get')
+                       ->with('config')->will($this->returnValue($config));
+
+        $factory = new ImboClientServiceFactory();
+        $client = $factory->createService($serviceLocator);
+
+        $this->assertInstanceOf('ImboClient\ImboClient', $client);
+
+        // Assert correct configuration has been injected
+        $this->assertSame(array('http://imbo'), $client->getServerUrls());
+        $this->assertStringStartsWith(
+            'http://imbo/users/usr.json',
+            (string) $client->getUserUrl()
+        );
+
+        $this->assertSame('usr', $client->getUser());
+        $this->assertSame('public', $client->getPublicKey());
+        $this->assertSame('private', $client->getConfig('privateKey'));
+    }
+
+    /**
+     * @covers Imbo\ServiceFactory\ImboClientServiceFactory::createService
+     */
+    public function testCorrectlyFallsBackToPublicKeyIfNoUserIsSpecified() {
+        $config = array(
+            'imboModule' => array(
+                'imboClient' => array(
+                    'host' => 'http://imbo',
                     'publicKey' => 'public',
                     'privateKey' => 'private',
                     'driver' => array(
@@ -55,6 +96,7 @@ class ImboClientServiceFactoryTest extends \PHPUnit_Framework_TestCase {
             (string) $client->getUserUrl()
         );
 
+        $this->assertSame('public', $client->getUser());
         $this->assertSame('public', $client->getPublicKey());
         $this->assertSame('private', $client->getConfig('privateKey'));
     }
