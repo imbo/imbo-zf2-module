@@ -21,7 +21,7 @@ return array(
 The module has some configuration options that you will need to set, and all options are under the `imboModule` key in the configuration array.
 
 ### Client configuration
-To configure the ImboClient instance you need to specify one or more hosts and a public and private key pair:
+To configure the ImboClient instance you need to specify one or more hosts, a user and a public/private key pair:
 
 ```php
 return array(
@@ -29,6 +29,7 @@ return array(
         'imboClient' => array(
             'host' => 'http://imboserver',
             // or 'host' => array('http://imboserver1', 'http://imboserver2'),
+            'user' => 'some-user',
             'publicKey' => 'somepublickey',
             'privateKey' => 'someprivatekey',
         ),
